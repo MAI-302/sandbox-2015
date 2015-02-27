@@ -17,7 +17,8 @@ public class small2 {
 		String sub = "";
 		
 		int i = 0;
-		while(i < str.length())
+		
+		do
 		{
 			let = str.toCharArray()[i];
 			if(let == '(')
@@ -27,6 +28,7 @@ public class small2 {
 			
 			i++;
 		}
+		while(i < str.length());
 		
 		if(count == 0)
 		{
@@ -39,7 +41,8 @@ public class small2 {
 		}
 		
 		i = 0;
-		while(i < str.length())
+		
+		do
 		{
 			if(str.toCharArray()[i] == '(')
 			{
@@ -53,6 +56,7 @@ public class small2 {
 			
 			i++;
 		}
+		while(i < str.length());
 		
 		System.out.println("Выполнено достаточное условие: после каждой левой скобки есть хотя бы одна правая.");
 	}
