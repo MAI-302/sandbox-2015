@@ -10,16 +10,22 @@ public class small2 {
 		Scanner input = new Scanner(System.in);	
 		
 		str = input.next();
+		char let;
+		
 		
 		int count = 0;
 		String sub = "";
 		
-		for(char let: str.toCharArray())
+		int i = 0;
+		while(i < str.length())
 		{
+			let = str.toCharArray()[i];
 			if(let == '(')
 				count++;
 			if(let == ')')
 				count--;
+			
+			i++;
 		}
 		
 		if(count == 0)
@@ -32,7 +38,8 @@ public class small2 {
 			System.exit(0);
 		}
 		
-		for(int i = 0; i < str.length(); i++)
+		i = 0;
+		while(i < str.length())
 		{
 			if(str.toCharArray()[i] == '(')
 			{
@@ -43,6 +50,8 @@ public class small2 {
 				System.out.println("Не выполнено достаточное условие: после левой скобки не найдена правая.");
 				System.exit(0);
 			}
+			
+			i++;
 		}
 		
 		System.out.println("Выполнено достаточное условие: после каждой левой скобки есть хотя бы одна правая.");
