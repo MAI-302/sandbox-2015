@@ -14,9 +14,10 @@ namespace seven
         {
             int n;
             int m;
-            int min = Int32.MaxValue;
+            int MinInColumn = Int32.MaxValue;
             int i = 0;
             int j = 0;
+            int MaxInRow = Int32.MinValue;
 
             Console.WriteLine("Напишите кол-во строк матрицы ");
             n = Convert.ToInt32(Console.ReadLine());
@@ -28,13 +29,7 @@ namespace seven
             
 
             int[][] mas = new int [n][];
-            int[] vector = new int[n];
             //массив для максимальных элементов
-            do
-            {
-                vector[i] = Int32.MinValue;
-                i++;
-            }while (i < n);
 
             i = 0;
 
@@ -49,26 +44,34 @@ namespace seven
                     Console.Write(mas[i][j] + " ");
                     j++;
                 } while (j < m);
-
                 Console.WriteLine();
                 i++;
                 j = 0;
 
             } while (i < n);
-            //Вывод матрицы
 
             i = 0;
-            //находим максимальный элемент в каждой строке
+
             do
             {
-                IEnumerable<int> row = mas[i].Cast<int>();
-                vector[i] = row.Max();
+                do
+                {
+                    if (MaxInRow < mas[i][j])
+                    {
+                        MaxInRow = mas[i][j];
+                    }
+                    j++;
+                } while (j < m);
+                if (MaxInRow < MinInColumn)
+                {
+                    MinInColumn = MaxInRow;
+                }
+                MaxInRow = 0;
                 i++;
+                j = 0;
             } while (i < n);
 
-            i = 0;
-            //минимальный среди максимальных
-            Console.WriteLine("Минимальный из максимальных элементов строк двумерного массива " + vector.Min());
+            Console.WriteLine("Минимальный из максимальных элементов строк двумерного массива " + MinInColumn);
 
             Console.ReadKey();
         }
