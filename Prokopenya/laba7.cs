@@ -8,6 +8,8 @@ namespace seven
 {
     class laba7
     {
+        static Random random = new Random();
+
         static void Main(string[] args)
         {
             int n;
@@ -36,14 +38,15 @@ namespace seven
 
             i = 0;
 
-            Console.WriteLine("Заполниете матрицу числами");
+            Console.WriteLine("Сгенерированная матрица ");
 
             do
             {
                 mas[i] = new int[m];
                 do
                 {
-                    mas[i][j] = Convert.ToInt32(Console.ReadLine());
+                    mas[i][j] = random.Next(10,100);
+                    Console.Write(mas[i][j] + " ");
                     j++;
                 } while (j < m);
 
@@ -53,20 +56,6 @@ namespace seven
 
             } while (i < n);
             //Вывод матрицы
-            Console.WriteLine("Полученная матрица ");
-            i = 0;
-
-            do
-            {
-                do
-                {
-                    Console.Write(mas[i][j] + "\t");
-                    j++;
-                } while (j < m);
-                Console.WriteLine();
-                i++;
-                j = 0;
-            } while (i < n);
 
             i = 0;
             //находим максимальный элемент в каждой строке
@@ -79,7 +68,7 @@ namespace seven
 
             i = 0;
             //минимальный среди максимальных
-            Console.WriteLine("Минимальный элемент равен " + vector.Min());
+            Console.WriteLine("Минимальный из максимальных элементов строк двумерного массива " + vector.Min());
 
             Console.ReadKey();
         }
