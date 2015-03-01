@@ -27,40 +27,26 @@ public class small1 {
 		int count = fact(str.length());			//Начальное значение кол-ва анаграмм
 		boolean[] letters = new boolean[str.length()];		//Массив флагов для слова. Предназначен для того, чтобы не рассматривать рассмотренные буквы.
 		int repeats = 0;									//Кол-во повторов для каждой буквы
-		char ch, let;
+		char[] chars = str.toCharArray();					//Строка в виде массива символов
 		int i, j;
-		
-		//Заполнение массива флагов true
-		i = 0;
-		while(i < str.length())
-		{
-			letters[i] = true;
-			i++;
-		}
 		
 		//Цикл подсчета повторов
 		i = 0;
 		while(i < str.length())
 		{
-			ch = str.toCharArray()[i];
 			repeats = 0;
-			
-			//Если буква не рас	смотрена
-			if(letters[i])
+
+			//Цикл от рассматриваемой буквы до конца
+			j = i;
+			while(j < str.length())
 			{
-				//Цикл от рассматриваемой буквы до конца
-				j = i;
-				while(j < str.length())
+				//Если найдена еще одна такая буква и буква не рассмотрена, то ставим на этой букве флаг false, и инкрементируем счетчик повторов
+				if(chars[i] == chars[j] && !letters[j])
 				{
-					let = str.toCharArray()[j];
-					//Если найдена еще одна такая буква, то ставим на этой букве флаг false, и инкрементируем счетчик повторов
-					if(let == ch)
-					{
-						letters[j] = false;
-						repeats++;
-					}
-					j++;
+					letters[j] = true;
+					repeats++;
 				}
+				j++;
 			}
 			count = count / fact(repeats);		//Корректировка кол-ва анаграмм
 			i++;
