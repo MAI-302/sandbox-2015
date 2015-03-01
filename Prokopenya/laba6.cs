@@ -18,8 +18,8 @@ namespace six
             Console.WriteLine("Напишите длину массива");
             n =  Convert.ToInt32(Console.ReadLine());
 
-            double[] mas = new double[n];
-            double[] sredArif = new double[n];
+            int[] mas = new int[n];
+            double[] mean = new double[n];
 
             Console.WriteLine("Исходный массив ");
 
@@ -32,16 +32,16 @@ namespace six
 
             Console.WriteLine();
 
-            sredArif[0] = (mas[0] + mas[1]) / 2;        //для первого элемента
+            mean[0] = (mas[0] + mas[1]) / 2.0;        //для первого элемента
 
-            sredArif[n-1] = (mas[n-1] + mas[n - 2]) / 2;//для последнего
+            mean[n-1] = (mas[n-1] + mas[n - 2]) / 2.0;//для последнего
 
             //дальше у всех уже 2 соседних элемента
             i = 1; 
 
             while (i < n - 1) 
             {                              
-                    sredArif[i] = (mas[i] + mas[i - 1] + mas[i + 1]) / 3;
+                    mean[i] = (mas[i] + mas[i - 1] + mas[i + 1]) / 3.0;
                     i++;                    
             }
 
@@ -51,7 +51,7 @@ namespace six
 
             while (i < n) 
             { 
-                Console.WriteLine("{0:0.##}",sredArif[i]);
+                Console.WriteLine("{0:0.##}", mean[i]);
                 i++; 
             }
 
