@@ -6,51 +6,31 @@ public class small2 {
 
 	public static void main(String[] args) 
 	{
-		String str;
+		
+		String str;								//Слово
 		Scanner input = new Scanner(System.in);	
 		
 		str = input.next();
-		char let;
+		char let;								//i-ый символ в слове
 		
-		
-		int count = 0;
-		String sub = "";
+		int count = 0;								//Счетчик разности кол-ва левых и правых скобок
 		
 		int i = 0;
 		
 		do
 		{
 			let = str.toCharArray()[i];
+			
+			//Подсчет числа левых скобок и правых скобок
 			if(let == '(')
 				count++;
 			if(let == ')')
 				count--;
 			
-			i++;
-		}
-		while(i < str.length());
-		
-		if(count == 0)
-		{
-			System.out.println("Выполнено необходимое условие: левых скобок столько же, сколько и правых.");
-		}
-		else
-		{
-			System.out.println("Необходимое условие не выполнено: количество левых и правых скобок не совпадает.");
-			System.exit(0);
-		}
-		
-		i = 0;
-		
-		do
-		{
-			if(str.toCharArray()[i] == '(')
+			//Проверка нахождения правой скобки после левой
+			if(let == '(' && str.indexOf(')', i) == -1)
 			{
-				sub = str.substring(i);
-			}
-			if(sub.indexOf(')') == -1)
-			{
-				System.out.println("Не выполнено достаточное условие: после левой скобки не найдена правая.");
+				System.out.println("Скобки расставлены неправильно.");
 				System.exit(0);
 			}
 			
@@ -58,7 +38,15 @@ public class small2 {
 		}
 		while(i < str.length());
 		
-		System.out.println("Выполнено достаточное условие: после каждой левой скобки есть хотя бы одна правая.");
+		//Проверка числа левых скобок и правых скобок
+		if(count == 0)
+		{
+			System.out.println("Скобки расставлены правильно.");
+		}
+		else
+		{
+			System.out.println("Скобки расставлены неправильно.");
+		}
 	}
 
 }
