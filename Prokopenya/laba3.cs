@@ -8,6 +8,9 @@ namespace three
 {
     class laba3
     {
+
+        static Random random = new Random();
+
         static void Main(string[] args)
         {
             int number; //число для умножения
@@ -19,52 +22,42 @@ namespace three
 
             Console.WriteLine("Напишите размерность квадратной матрицы ");
             n = Convert.ToInt32(Console.ReadLine());
-            int[,] matrix = new int[n,n];
-            Console.WriteLine("Введите матрицу ");
 
-            while (i < n) //цикл по строкам
+            int[,] matrix = new int[n, n];
+            Console.WriteLine("Сгенерированная матрица ");
+
+            while (i < matrix.GetLength(0)) //цикл по строкам
             {
-                while (j < n) //цикл по столбцам
+                while (j < matrix.GetLength(1)) //цикл по столбцам
                 {
-                    matrix[i, j] = Convert.ToInt32(Console.ReadLine());                  
+                    matrix[i, j] = random.Next(0,100);
+                    Console.Write(matrix[i, j] + " ");
+
                     if (matrix[i, j] != 0 && (i != j))
                     {
                         flag = false;
                     }
                     j++;
                 }
+                Console.WriteLine();
                 i++;
                 j = 0;
             }
 
             i = 0;
-
-            Console.WriteLine("Введеная матрица:");
-            //печать введенной матрицы на экран
-            while (i < n)
-            {
-                while (j < n)
-                {
-                    Console.Write(matrix[i, j] + "\t"); 
-                    j++;
-                }
-                Console.WriteLine("\n");
-                i++;
-                j = 0;
-            }
 
             Console.WriteLine("Напишите число ");
             number = Convert.ToInt32(Console.ReadLine());
 
             i = 0;
-            
-            while (i < n)   //на диагонали
+
+            while (i < matrix.GetLength(0))   //на диагонали
             {
-                if (matrix[i,i] != number)
+                if (matrix[i, i] != number)
                 {
                     flag = false;
                 }
-                i++;    
+                i++;
             }
 
             if (flag)
