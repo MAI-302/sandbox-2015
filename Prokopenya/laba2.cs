@@ -11,9 +11,9 @@ namespace two
         static void Main(string[] args)
         {
             string str;
-            char left  = '(';
-            char right = ')';
-            int[] count = new int[2];
+            int left = 0;
+            int right = 0;
+            bool flag = true;
 
             Console.WriteLine("Напишите текст ");
             str = Console.ReadLine();
@@ -22,29 +22,38 @@ namespace two
             {
                 char c;
                 c = str[i];
-                if (c == left)               
-                    count[0]++;
 
-                if (c == right)
-                    count[1]++;
+                if (c == '(')
+                {
+                    left++;
+                }
+
+                if ((left == 0 && c == ')') || (left == right && c == ')'))
+                {
+                    flag = false;
+                }
+
+                if (c == ')')
+                {
+                    right++;
+                }
+
             }
-
-            if (count[0] == count[1] && count[0] == 0)
+            
+            if (left == 0 && right == 0)
             {
                 Console.WriteLine("В тексте нет скобок ");
                 Console.ReadKey(true);
                 Environment.Exit(0);
             }
 
-            if (count[0] == count[1] && count[0] !=0)
+            if (left == right && flag == true)
             {
                 Console.WriteLine("Все скобки расставленны верно ");
             }
             else
             {
                 Console.WriteLine("Проверьте кол-во расставленных скобок");
-                Console.WriteLine("Левых скобок " + count[0]);
-                Console.WriteLine("Правых скобок " + count[1]);
             }
             Console.ReadKey(true);
 
