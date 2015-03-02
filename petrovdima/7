@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+           // создание двумерного массива 
+            Random r = new Random();
+            Console.WriteLine("Введите кол-во строк");
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите кол-во столбцов");
+            int m = int.Parse(Console.ReadLine());
+            int[,] A = new int[n, m];
+         
+            Console.WriteLine("Исходный массив");
+            for (int i = 0; i < A.GetLength(0); ++i)
+            {
+                for (int j = 0; j < A.GetLength(1); ++j)
+                {
+
+                    A[i, j] = r.Next(10, 99);//рандомное заполнение
+                    Console.Write(A[i, j] + "   ");
+
+                }
+                Console.WriteLine("");
+            }
+           
+
+
+            //нахождение максимального в каждой строке
+            int[] arraymax = new int[n];
+            for (int i = 0; i < A.GetLength(0); ++i)
+            { 
+               int max = int.MinValue;
+                     
+                    for (int j = 0; j < A.GetLength(1); ++j)
+                 {
+                     if (max < A[i, j])
+                      {
+                          max = A[i, j];
+                      }
+                     arraymax[i] = max;
+                }
+            }
+    
+
+            //вывод массива из максимальных
+
+            Console.WriteLine("max:" );           
+            for (int i = 0; i < arraymax.Length; i++)
+            {
+                Console.WriteLine(arraymax[i]);
+            }
+
+
+
+            //нахождение минимальног оиз максимальных
+
+            int min = arraymax[0];
+            for (int i = 0; i < arraymax.Length; i++)
+            {
+                if (arraymax[i] < min)
+                {
+                    min = arraymax[i];
+                }
+            }
+            Console.WriteLine("min:{0}", min);// вывод минимакса 
+
+            Console.ReadLine();
+        }
+    }
+}
