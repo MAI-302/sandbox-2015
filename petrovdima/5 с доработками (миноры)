@@ -1,0 +1,153 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _5
+{
+     class Matrix
+    {
+        public int row, col;
+        public int[,] p;
+
+        public Matrix(int n, int m)
+        {
+            row = n;
+            col = m;
+            p = new int[n, m];
+        }
+       
+        public void InitMartix()   // заполнение матрицы 
+        { 
+            
+            
+           Random rd = new Random();
+           int i = 0;
+            while ( i < row)
+            {    
+                int j = 0;
+                while ( j < row)
+                { 
+                    
+                     p[i, j] = rd.Next(10);
+                    j++; 
+                }
+                i++;
+            }
+        }
+        public void ShowMartix() // вывод матрицы 
+        {
+            int i = 0;
+            while (i < row)
+            {
+                int j = 0;
+                while (j < row)
+                {
+                    Console.Write(p[i, j]);
+                    Console.Write("  ");
+                    j++; 
+                }
+                Console.WriteLine();
+                i++;
+            }  
+        } 
+         //дискрименант матрицы  2x2
+        public double Det2x2()
+        {
+            double det;
+            det = p[0, 0] * p[1, 1] - p[0, 1] * p[1, 0];
+
+            return det;
+        }
+        //минор матрицы 
+        public Matrix Menor(int a, int b)
+        {
+           
+            int i, j, p, q;
+            Matrix MEN = new Matrix(row - 1, col - 1);
+            Console.WriteLine("");i = 0; p = 0;
+            while ( p < MEN.row )
+            {
+                j = 0; q = 0;
+                while (q < MEN.row)  
+                {
+                    if (i == a) i++;
+                    if (j == b) j++;
+                    MEN.p[p, q] = this.p[i, j];
+
+                   Console.Write(MEN.p[p, q] );
+
+                   j++; q++;
+                    
+                }       
+             i++; p++;
+                      Console.WriteLine( );
+             
+            }
+            Console.WriteLine();
+
+           
+            return MEN;
+ 
+        }
+           
+    }
+ 
+    class Program
+    {//дискриминант матрицы 
+        public static double Det(Matrix B)
+        {
+            int n;
+            int signo;
+            double det = 0;
+            // проверки 
+            if (B.row != B.col)
+            {
+                Console.WriteLine("матрица должна быть квадратной ");
+                return 0;
+            }
+            else
+                if (B.row == 1)
+                    return B.p[0, 0];
+                else
+                    if (B.row == 2)
+                        return B.Det2x2();
+                    else
+                        
+                        
+                      n = 0;
+                       while( n < B.col )
+                        { //проверка четности для четных стобцов 
+                            //знак =(+),нечетных =(-)
+                            if ((n & 1) == 0)
+                            {
+                                signo = 1;
+                            }
+                            else
+                            {
+                                signo = -1;
+                            }
+                            //(n&1)==0 ? (signo=1):(signo=-1);
+                            det = det + signo * B.p[0, n] * Det(B.Menor(0, n));
+                           n++;
+                        }
+
+            return det;
+        }
+        static void Main(string[] args)
+        {
+            Matrix m = new Matrix(3, 3);
+            m.InitMartix();
+            Console.WriteLine("Матрица");
+            m.ShowMartix();
+            Console.WriteLine("миноры");
+            double d = Det(m);  
+            Console.WriteLine("опредилитель равен");
+            Console.Write(d);
+          
+            Console.WriteLine();
+            Console.ReadKey();
+        }
+    }
+}
