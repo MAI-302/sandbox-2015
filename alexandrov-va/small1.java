@@ -5,16 +5,25 @@ import java.util.Scanner;
 public class small1 {
 
 	//Функция факториала
-	static int fact(int x)
+	static double fact(double x)
 	{
+		double i = 2;
+		double res = 1;
+		
 		if(x <= 1)
 		{
 			return 1;
 		}
 		else
 		{
-			return x*fact(x-1);
+			while(i <= x)
+			{
+				res *= i;
+				i++;
+			}
 		}
+		
+		return res;
 	}
 	
 	public static void main(String[] args) 
@@ -24,9 +33,9 @@ public class small1 {
 		System.out.print("Введите слово:\t");
 		String str = input.next();				//Исходное слово
 		
-		int count = fact(str.length());			//Начальное значение кол-ва анаграмм
+		double count = fact(str.length());					//Начальное значение кол-ва анаграмм
 		boolean[] letters = new boolean[str.length()];		//Массив флагов для слова. Предназначен для того, чтобы не рассматривать рассмотренные буквы.
-		int repeats = 0;									//Кол-во повторов для каждой буквы
+		double repeats = 0;									//Кол-во повторов для каждой буквы
 		char[] chars = str.toCharArray();					//Строка в виде массива символов
 		int i, j;
 		
@@ -35,7 +44,6 @@ public class small1 {
 		while(i < str.length())
 		{
 			repeats = 0;
-
 			//Цикл от рассматриваемой буквы до конца
 			j = i;
 			while(j < str.length())
