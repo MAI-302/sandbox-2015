@@ -30,7 +30,10 @@ namespace small_3
                 {
                     matrix[i, j] = rand.Next(-100, 100);
                     Console.Write(matrix[i, j] + " ");
-                    
+                    if ((i != j) && (matrix[i, j] != 0))
+                    {
+                        ifMatrixIsNumberMultUnMatrix = false;
+                    }      
                 }
                 Console.WriteLine();
             }
@@ -38,13 +41,6 @@ namespace small_3
 
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    if ((i != j) && (matrix[i, j] != 0))
-                    {
-                        ifMatrixIsNumberMultUnMatrix = false;
-                    }      
-                }
                 if (matrix[i, i] != number)
                 {
                     ifMatrixIsNumberMultUnMatrix = false;
