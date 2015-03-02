@@ -2,7 +2,7 @@ package small3;
 
 public class small3 
 {
-
+	
 	public static void main(String[] args) 
 	{
 		
@@ -12,6 +12,8 @@ public class small3
 				{0, 4, 0},
 				{0, 0, 4}
 			};
+		
+		boolean isScalar = true;
 		
 		//Вывод матрицы
 		for(int i = 0; i < arr.length; i++)
@@ -28,15 +30,18 @@ public class small3
 		{
 			for(int j = 0; j < arr.length; j++)
 			{
-				if((i != j && arr[i][j] != 0) || (i == j && (i+j)>1 && arr[i][j] != arr[i-1][j-1]))
+				if((i != j && arr[i][j] != 0) || (i == j && arr[i][j] != arr[0][0]))
 				{
-					System.out.println("Матрица не скалярная.");
-					System.exit(0);
+					isScalar = false;
+					break;
 				}
 			}
 		}
 		
-		System.out.println("Матрица скалярная.");
+		if(isScalar)
+			System.out.println("Матрица скалярная.");
+		else
+			System.out.println("Матрица не скалярная.");
 	}
 
 }
