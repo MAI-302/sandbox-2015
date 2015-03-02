@@ -13,8 +13,16 @@ namespace small_4
 
             Console.WriteLine("Введите текст");
             string input = Console.ReadLine();
+            char[] chars = input.ToCharArray();
 
-            char[] chars = input.ToCharArray().Distinct().ToArray(); //Получаем массив символов входящих в input
+            var Hash = new HashSet<char>(); //Создаем множество 
+
+            foreach (var x in chars) // Добавляем те элементы, которых еще нет в множестве
+                if (!Hash.Contains(x))
+                    Hash.Add(x);
+
+            Array.Resize(ref chars, Hash.Count); //Изменяем размер массива
+            chars = Hash.ToArray(); //Передаем элементы из множества обратно в массив
 
             int i = 0;
             while (i < chars.Length)
