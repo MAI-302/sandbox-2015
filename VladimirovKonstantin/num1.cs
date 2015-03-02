@@ -13,10 +13,10 @@ namespace Anagramma1
             Console.WriteLine("Введите слово ");
 	    string a=Console.ReadLine();
             bool[] a_bool = new bool[a.Length]; // массив флагов, отмечает переменные, проверенные на повторение 
-	    int [] povtory = new int [a.Length]; // массив в котором содержится число перестановок одинаковых символов
-            for (int i = 0; i < povtory.Length; i++)
+	    int [] repetitions = new int [a.Length]; // массив в котором содержится число перестановок одинаковых символов
+            for (int i = 0; i < repetitions.Length; i++)
             {
-                povtory[i] = 1;  // для удобства счет начнётся с 1
+                repetitions[i] = 1;  // для удобства счет начнётся с 1
             }
 	    for (int i=0;i<a.Length;i++) 
 	    {
@@ -24,23 +24,23 @@ namespace Anagramma1
 		{
 			if ((a[i]==a[j]) && (!a_bool[j])) //проверка равенства символов и наличия флага
 			{
-				povtory[i]++; // подсчёт кол-ва повторов
+				repetitions[i]++; // подсчёт кол-ва повторов
 				a_bool[j] = true;// пометка повторяющихся символов
 			}
 		}
-		if (povtory[i] !=1)
+		if (repetitions[i] !=1)
 		{
-                    int temp = povtory[i];
-                    povtory[i] = factorial(temp);//рассчёт числа перестановок одинаковых символов (факториал)
+                    int temp = repetitions[i];
+                    repetitions[i] = factorial(temp);//рассчёт числа перестановок одинаковых символов (факториал)
 		}			
             }
 
-            float result = factorial(a.Length); // рассчёт максимально возможного кол-ва анаграмм
+            ulong result = factorial(a.Length); // рассчёт максимально возможного кол-ва анаграмм
 	    for (int i=0; i<a.Length;i++)
 		{
-			if(povtory[i] != 1)
+			if(repetitions[i] != 1)
 			{
-                        	result /= povtory[i];// удаление лишнего числа перестановок
+                        	result /= repetitions[i];// удаление лишнего числа перестановок
 			}
 		}
             result--;// - входное слово
@@ -48,16 +48,14 @@ namespace Anagramma1
 	    System.Console.ReadKey();
         }
 
-        private static int factorial(int n) // рекурсивный подсчёт факториала
+        private static ulong factorial(int n) // рекурсивный подсчёт факториала
         {
-            if (n == 1)
+            factorial =1;
+            for (int i=2;i<=n;i++)
             {
-                return n;
+            	factorial*=i;
             }
-            else
-            {
-                return n * factorial(n - 1);
-            }
+            return factorial;
         }
     }
 }
