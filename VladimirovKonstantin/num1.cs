@@ -48,7 +48,7 @@ namespace Anagramma1
 	    System.Console.ReadKey();
         }
 
-        private static ulong factorial(int n) // рекурсивный подсчёт факториала
+        private static ulong factorial(int n) // подсчёт факториала "в лоб"
         {
             factorial =1;
             for (int i=2;i<=n;i++)
