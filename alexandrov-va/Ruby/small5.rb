@@ -5,10 +5,7 @@ n = 4
 arr = []
 
 (0...n).each do |i|
-	arr[i] = []
-	(0...n).each do |j|
-		arr[i][j] = rand(100) - 50
-	end
+	arr[i] = Array.new(n){ rand(100) - 50}
 	print arr[i]
 	puts ""
 end
