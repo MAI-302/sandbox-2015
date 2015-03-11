@@ -1,15 +1,10 @@
 require 'matrix'
 puts "Задайте размер матрицы n:"
-n = gets.chomp.to_i
-arr = []
+n = gets.to_i
+mas = []
 (0...n).each do |i|
-	arr[i] = []
-	(0...n).each do |j|
-		arr[i][j] = rand(100) - rand(100)
-	end
-	print arr[i]
-	puts ""
+	mas[i] = Array.new(n.to_i){rand(10)-rand(10)}
 end
-
+0.upto(mas.size - 1) { |i| p mas[i] }
 print "Определитель матрицы  = "
 print Matrix[*arr].det

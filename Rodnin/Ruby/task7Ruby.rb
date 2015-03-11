@@ -1,27 +1,11 @@
-
-puts "Введите n:"
-n = gets.chomp
-puts "Введите m:"
-m = gets.chomp
 matrix = []
-for i in 0...n.to_i do
-  matrix << []
-  for j in 0...m.to_i do
-    matrix[i] << rand(100)-100
-  end
-  puts matrix[i].to_s
-  puts ""
+puts "Введите n:"
+n = gets.to_i
+puts "Введите m:"
+m = gets.to_i
+(0...n).each do |i|
+	matrix[i] = Array.new(n.to_i){rand(10)-rand(10)}
 end
-maxOfStr = 0
-minmax = 1000000
-for i in 0...n.to_i do
-  for j in 0...m.to_i do
-    if (matrix[i][j] > matrix[i][maxOfStr])
-      maxOfStr = j
-    end
-  end
-  if (matrix[i][maxOfStr] < minmax)
-    minmax = matrix[i][maxOfStr]
-  end
-end
-puts "Минимакс = "+minmax.to_s
+0.upto(matrix.size - 1) { |i| p matrix[i] }
+print "Минимальный из максимальных элементов строк: "
+puts matrix.map{ |element| element.max }.min

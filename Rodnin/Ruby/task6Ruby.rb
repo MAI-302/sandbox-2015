@@ -1,19 +1,10 @@
 puts "Задайте длину массива n:"
 n = gets.chomp.to_i
-mas = []
-mean = []
-puts "Исходный массив: "
-(0...n).each do |i|
-	mas[i] = rand(100)-rand(100)
-	print mas[i]
-	puts ""
-end
-mean[0] = (mas[0] + mas[1]) / 2.0;
-mean[n - 1] = (mas[n - 1] + mas[n - 2]) / 2.0;
-(1...n-1).each do |i|
-	mean[i] = (mas[i] + mas[i - 1] + mas[i + 1]) / 3.0
-end
-(0...n).each do |i|
-	print mean[i]
-	puts ""
-end
+arr = Array.new(n.to_i){ rand(10) }
+print "Исходный массив: "
+p arr
+mean = (1...(n.to_i - 1)).to_a.map{ |i| ((arr[i - 1] + arr[i] + arr[i + 1])/3.0).round(2) }
+mean.unshift(((arr[0] + arr[1])/2.0).round(2))
+mean.push(((arr[-1] + arr[-2])/2.0).round(2))
+print "Массив средних арифметических: "
+p mean
