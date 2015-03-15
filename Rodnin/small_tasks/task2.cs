@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
 
 namespace small2
 {
@@ -13,12 +12,11 @@ namespace small2
             Console.WriteLine("Введите выражение");
             string input = Console.ReadLine();
 
-            input = new string(input.Where(ch => !char.IsLetterOrDigit(ch)).ToArray());
+            Regex r = new Regex("[^()]*", RegexOptions.IgnoreCase);
+            Console.WriteLine(r.Replace(input, ""));
 
             StringBuilder str = new StringBuilder(input);
-
-            int i = 0;
-
+            int i = 0;         
             do
             {
                 if ((str[i] == '(' && str[i + 1] == ')'))
