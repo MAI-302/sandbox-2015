@@ -13,38 +13,48 @@ namespace small_1
         {
             Console.WriteLine("Введите слово :");
             string input_word = Console.ReadLine();
-            char[] chars = input_word.ToCharArray();
-            var Hash = new HashSet<char>(); //Создаем множество 
 
-            foreach (var x in chars) // Добавляем те элементы, которых еще нет в множестве
-                if (!Hash.Contains(x))
+            ulong result = Factorial((ulong)(input_word.Length));		//Анаграммы слова без учета повторов
+            bool[] letters = new bool[input_word.Length];		        //Массив для помечения просмотренных букв
+            ulong repeats = 0;									        //Количество повторов для каждой буквы
+            char[] chars = input_word.ToCharArray();					
+            int i, j;
+
+            
+            i = 0;
+            while (i < input_word.Length)
+            {
+                repeats = 0;
+                j = i;
+                while (j < input_word.Length)
                 {
-                    Hash.Add(x);
-                }              
-            chars = Hash.ToArray(); //Передаем элементы из множества обратно в массив
-            ulong result;
-            if (Convert.ToInt32(input_word.Length) != Convert.ToInt32(chars.Length))
-            {
-                result = Factorial(Convert.ToInt32(input_word.Length)) / (Factorial(Convert.ToInt32(chars.Length)));
+                    //Если найдена такая же буква, и она еще не была рассмотрена, отмечаем ее и инкрементируем repeats
+                    if (chars[i] == chars[j] && !letters[j])
+                    {
+                        letters[j] = true;
+                        repeats++;
+                    }
+                    j++;
+                }
+                //Условие воизбежание деления на ноль
+                if (repeats > 0)
+                {
+                    result = result / Factorial(repeats);  
+                }
+                i++;
             }
-            else
-            {
-                result = Factorial(Convert.ToInt32(input_word.Length));
-            }
-            result--;
-	        Console.WriteLine("Колличество аннаграм  : " + result);// вывод результата
+            Console.WriteLine("Колличество аннаграм  : " + result);// вывод результата
 	        Console.ReadKey();
         }
-        private static ulong Factorial(int n) // рекурсивный подсчёт факториала
+        private static ulong Factorial(ulong n) // рекурсивный подсчёт факториала
         {
-            if (n == 1)
+            if (n <= 1)
             {
-                return Convert.ToUInt64(n);
+                return n;
             }
             else
             {
-
-                return Convert.ToUInt64(n) * Factorial(n - 1);
+                return n * Factorial(n - 1);
             }
         }
     }
