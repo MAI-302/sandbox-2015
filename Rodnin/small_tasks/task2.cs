@@ -7,37 +7,25 @@ namespace small2
 {
     class task2
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            Console.WriteLine("Введите выражение");
-            string input = Console.ReadLine();
-
-            Regex r = new Regex("[^()]*", RegexOptions.IgnoreCase);
-            Console.WriteLine(r.Replace(input, ""));
-
-            StringBuilder str = new StringBuilder(input);
-            int i = 0;         
-            do
+            Console.WriteLine("Введите выражение: ");
+            string str = Console.ReadLine();
+            int result = 0;
+            for (int i = 0; i < str.Length && result >= 0; i++)
             {
-                if ((str[i] == '(' && str[i + 1] == ')'))
+                if (str[i] == '(')
                 {
-                    str.Remove(i, 1);
-                    str.Remove(i, 1);
-                    i = -1;
+                    result++;
                 }
-                i++;
-            } while (i < str.Length-1);
-            
-
-            if (str.Length == 0)
-            {
-                Console.WriteLine("Скобки расставлены правильно");
-            }
-            else
-            {
-                Console.WriteLine("Скобки расставлены неправильно");
-            }               
+                if (str[i] == ')')
+                {
+                    result--;
+                }
+            }                
+            Console.WriteLine((result == 0) ? "Скобки расставлены верно" : "Скобки расставлены неправильно");
             Console.ReadKey(true);
+
         }
     }
 }
