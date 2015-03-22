@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // создание двумерного массива 
+            Random r = new Random();
+            Console.WriteLine("Введите кол-во строк");
+            int n = int.Parse(Console.ReadLine());
+         
+            int[] A = new int[n];
+            double[] B = new double[n];
+            Console.WriteLine("Исходный массив");
+            for (int i = 0; i < n; ++i)
+            {
+               
+                    A[i] = r.Next(10);//рандомное заполнение
+                    Console.Write(A[i] + "   ");
+
+         
+            }
+            Console.WriteLine();
+            B[0]=(A[0]+A[1]/2.0);
+            B[n-1]=(A[n-1])+A[n-2]/2.0;
+             for (int i = 1; i < n-1 ; i ++)
+            {    
+                B[i] = (A[i]+A[i-1]+A[i+1])/3.0; 
+                
+            }
+
+             for (int i = 0; i < n; i++) 
+             {
+                 Console.Write(Math.Round(B[i], 3) + " ");
+             }
+              
+            Console.ReadLine();
+        }
+    }
+}
